@@ -30,14 +30,14 @@ class FileCabinet implements Cabinet {
 
     private List<Folder> getAllFolders() {
         return folders.stream()
-                .flatMap(folder -> checkIfItIsMultifolderAndReturnFolder(folder))
+                .flatMap(folder -> checkIfItIsMultiFolderAndReturnFolder(folder))
                 .collect(Collectors.toList());
     }
 
-    private Stream<Folder> checkIfItIsMultifolderAndReturnFolder(Folder folder) {
+    private Stream<Folder> checkIfItIsMultiFolderAndReturnFolder(Folder folder) {
         if (folder instanceof MultiFolder) {
             MultiFolder multiFolder = (MultiFolder) folder;
-            return Stream.concat(Stream.of(folder), multiFolder.getFolders().stream().flatMap(f -> checkIfItIsMultifolderAndReturnFolder(f)));
+            return Stream.concat(Stream.of(folder), multiFolder.getFolders().stream().flatMap(f -> checkIfItIsMultiFolderAndReturnFolder(f)));
         } else {
             return Stream.of(folder);
         }
