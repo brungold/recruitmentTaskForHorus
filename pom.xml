@@ -7,6 +7,21 @@
     <groupId>com.recruitmenttaskforhorus</groupId>
     <artifactId>recruitmentTaskForHorus</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <!--        UNIT TESTS-->
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.25.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>

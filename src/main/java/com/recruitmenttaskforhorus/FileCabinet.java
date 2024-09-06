@@ -9,6 +9,10 @@ class FileCabinet implements Cabinet {
 
     private List<Folder> folders;
 
+    public FileCabinet(List<Folder> folders) {
+        this.folders = folders;
+    }
+
     @Override
     public Optional<Folder> findFolderByName(String name) {
         return getAllFolders().stream()
@@ -37,7 +41,9 @@ class FileCabinet implements Cabinet {
     private Stream<Folder> checkIfItIsMultiFolderAndReturnFolder(Folder folder) {
         if (folder instanceof MultiFolder) {
             MultiFolder multiFolder = (MultiFolder) folder;
-            return Stream.concat(Stream.of(folder), multiFolder.getFolders().stream().flatMap(f -> checkIfItIsMultiFolderAndReturnFolder(f)));
+            return Stream.concat(Stream.of(folder), multiFolder.getFolders()
+                    .stream()
+                    .flatMap(f -> checkIfItIsMultiFolderAndReturnFolder(f)));
         } else {
             return Stream.of(folder);
         }
